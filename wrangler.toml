@@ -15,9 +15,9 @@ ENVIRONMENT = "production"
 bucket = ".next/static"
 
 # Configure routes for your application
-[routes]
-pattern = "/api/env"
-script = "src/worker/index.js"
+routes = [
+  { pattern = "/api/env", script = "src/worker/index.js" }
+]
 
 # Override variables in different environments if needed
 [env.production]
