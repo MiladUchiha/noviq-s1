@@ -1,4 +1,4 @@
-name = "noviq-s1"
+name = "noviq"
 main = "src/worker/index.js"
 compatibility_date = "2025-03-30"
 
