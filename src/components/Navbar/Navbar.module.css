@@ -1,0 +1,372 @@
+/* Navbar.module.css */
+
+.navbar {
+    position: fixed; /* Or sticky */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; /* Adjust height as needed */
+    padding: 0 1rem; /* Horizontal padding */
+/* Semi-transparent dark bg */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000; /* Ensure it's above other content */
+    transition: background-color 0.3s ease; /* Optional: transition for scroll effects */
+  }
+  
+  /* Optional: Style when scrolled */
+  /* .navbarScrolled { background-color: rgba(10, 8, 18, 0.95); } */
+  
+  .navContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 1300px; /* Match container widths */
+    margin: 0 auto;
+  }
+  
+  .logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+  
+  /* --- Desktop Navigation --- */
+  .navLinks {
+    display: none; /* Hidden on mobile by default */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 2rem; /* Space between links */
+  }
+  
+  .navLink {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.5rem 0; /* Add padding for easier clicking */
+    position: relative;
+    transition: color 0.2s ease-out;
+  }
+  
+  .navLink::after { /* Subtle underline hover effect */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #a78bfa; /* Accent color */
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
+  }
+  
+  .navLink:hover,
+  .navLink:focus {
+    color: #ffffff;
+    outline: none;
+  }
+  
+  .navLink:hover::after,
+  .navLink:focus::after {
+    transform: scaleX(0.6); /* Underline grows slightly */
+  }
+  
+  /* --- Right Side Elements --- */
+  .navRight {
+    display: none; /* Hidden on mobile by default */
+    align-items: center;
+    gap: 1.5rem; /* Space between lang selector and CTA */
+  }
+  
+  /* --- Language Selector --- */
+  .langSelector {
+    position: relative; /* Context for dropdown */
+  }
+  
+  .langTrigger {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .langTrigger:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+     color: #ffffff;
+  }
+  .langTrigger svg {
+     color: rgba(255, 255, 255, 0.6);
+  }
+  .chevron {
+      transition: transform 0.2s ease-out;
+  }
+  .chevronOpen {
+      transform: rotate(180deg);
+  }
+  
+  .langDropdown {
+    position: absolute;
+    top: calc(100% + 8px); /* Position below trigger */
+    right: 0; /* Align to the right */
+    background-color: #1a1428; /* Dark background for dropdown */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    list-style: none;
+    margin: 0;
+    min-width: 150px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1100; /* Above navbar */
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: dropdownFadeIn 0.25s ease-out forwards;
+    will-change: transform, opacity;
+  }
+  
+  @keyframes dropdownFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .langItem {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.6rem 1rem;
+    width: 100%;
+    text-align: left;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: block; /* Ensure button takes full width */
+  }
+  
+  .langItem:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
+  
+  .langItemActive {
+      font-weight: 600;
+      color: #c5aeff; /* Highlight active language */
+      background-color: rgba(167, 139, 250, 0.1);
+  }
+  
+  /* --- Auth Buttons --- */
+  .authButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 0.6rem;
+    text-decoration: none;
+    transition: all 0.25s ease-out;
+    white-space: nowrap;
+  }
+  
+  .loginButton {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .loginButton:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .logoutButton {
+    color: #ffffff;
+    background-color: rgba(255, 59, 48, 0.1);
+    border: 1px solid rgba(255, 59, 48, 0.2);
+    cursor: pointer;
+  }
+  
+  .logoutButton:hover {
+    background-color: rgba(255, 59, 48, 0.2);
+    border-color: rgba(255, 59, 48, 0.3);
+  }
+  
+  .dashboardButton {
+    color: #ffffff;
+    background-color: rgba(167, 139, 250, 0.2);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+  }
+  
+  .dashboardButton:hover {
+    background-color: rgba(167, 139, 250, 0.3);
+    border-color: rgba(167, 139, 250, 0.4);
+  }
+  
+  .mobileAuthLink {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .mobileLogoutBtn {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    color: rgba(255, 59, 48, 0.9);
+  }
+  
+  .mobileLogoutBtn:hover {
+    color: rgba(255, 59, 48, 1);
+  }
+  
+  /* --- CTA Button --- */
+  .ctaButton { /* Base styles reused from SecondaryCTA */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.2rem; /* Slightly smaller padding for navbar */
+    font-size: 0.9rem; 
+    font-weight: 500;
+    border-radius: 0.6rem; 
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s ease-out;
+    white-space: nowrap; 
+  }
+  .navCtaButton {
+     background: linear-gradient(95deg, #a78bfa, #8b5cf6); 
+     color: #ffffff;
+     border-color: #a78bfa; 
+     box-shadow: 0 2px 8px rgba(167, 139, 250, 0.15);
+  }
+  .navCtaButton:hover {
+     background: linear-gradient(95deg, #b39ddb, #a78bfa); 
+     box-shadow: 0 4px 12px rgba(167, 139, 250, 0.25);
+     transform: translateY(-1px);
+  }
+  .navCtaButton svg {
+      transition: transform 0.25s ease-out;
+  }
+  .navCtaButton:hover svg {
+      transform: translateX(2px); 
+  }
+  
+  
+  /* --- Mobile Menu --- */
+  .mobileMenuButton {
+    display: none; /* Hidden by default, shown via media query */
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1200; /* Above panel */
+  }
+  
+  .mobileMenuPanel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%; /* Adjust width */
+    max-width: 300px;
+    height: 100vh;
+    background-color: #120f1c; /* Slightly different bg for contrast */
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6rem 2rem 2rem; /* Padding top to clear navbar, etc. */
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth ease */
+    z-index: 1150; /* Below button, above overlay */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    will-change: transform;
+  }
+  
+  .mobileMenuOpen {
+    transform: translateX(0);
+  }
+  
+  .mobileNavLinks {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      flex-grow: 1; /* Push bottom content down */
+  }
+  
+  .mobileNavLink {
+      display: block;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1.1rem;
+      font-weight: 500;
+      padding: 0.75rem 0;
+      text-decoration: none;
+      transition: color 0.2s ease;
+  }
+  .mobileNavLink:hover,
+  .mobileNavLink:focus {
+      color: #ffffff;
+       outline: none;
+  }
+  
+  .mobileMenuBottom {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+  }
+  .mobileCtaButton {
+      width: 100%; /* Full width button */
+      text-align: center;
+  }
+  
+  .mobileMenuOverlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1100; /* Below panel, above content */
+      opacity: 0;
+      animation: overlayFadeIn 0.4s ease forwards;
+      will-change: opacity;
+  }
+  @keyframes overlayFadeIn { to { opacity: 1; } }
+  
+  
+  /* --- Responsive Breakpoint --- */
+  @media (max-width: 900px) { /* Adjust breakpoint as needed */
+      .navLinks { display: none; } /* Hide desktop links */
+      .navRight { display: none; } /* Hide desktop right side */
+      .mobileMenuButton { display: block; } /* Show hamburger */
+  }
+  @media (min-width: 901px) { /* Ensure mobile panel is hidden on desktop */
+      .mobileMenuPanel { display: none; }
+      .mobileMenuOverlay { display: none; }
+      .navLinks { display: flex; } /* Show desktop links */
+      .navRight { display: flex; } /* Show desktop right side */
+  }

@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+html,
+ body {
+   overflow-x: hidden;
+   min-height: 100vh; /* Ensure body covers viewport height */
+   position: relative; /* Needed for potential pseudo-elements */
+ }
+
+ body {
+   /* --- Enhanced Gradient --- */
+   background-color: #0a0812; /* Fallback */
+   background-image:
+     /* Subtle highlight/color spots */
+     radial-gradient(ellipse 40% 50% at 20% 30%, hsla(260, 40%, 30%, 0.25) 0%, transparent 80%), 
+     radial-gradient(ellipse 40% 50% at 80% 70%, hsla(220, 50%, 20%, 0.2) 0%, transparent 80%),
+     /* Base dark gradient - slightly adjusted */
+     radial-gradient(circle at 50% 50%, #161224, #0f0a1e 60%, #0a0812 95%);
+   background-attachment: fixed; /* Keep gradient fixed during scroll */
+ }
+
+ /* --- Animated Grid Layer --- */
+ /* Apply this class to a div covering the background, or body::before */
+ 
+
+
+
+
+/* Utility classes */
+.backdrop-blur {
+  backdrop-filter: blur(8px);
+}

@@ -1,0 +1,137 @@
+/* SecondaryCTA.module.css */
+
+.ctaSection {
+    position: relative;
+    width: 100%;
+    padding: 8rem 1rem; /* Generous padding */
+    color: #fff;
+    overflow: hidden;
+     /* Subtle gradient or solid color slightly different from sections above/below */
+   
+  }
+  
+  /* Optional Glow container styles */
+  /* .glowContainer { ... } */
+  
+  .ctaBlock {
+    max-width: 750px; /* Constrained width for focus */
+    margin: 0 auto; /* Center the block */
+    padding: 3.5rem 2.5rem; /* Generous padding inside the block */
+    text-align: center;
+    
+    /* Styling consistent with other cards/blocks */
+    background: linear-gradient(155deg,
+      rgba(255, 255, 255, 0.06), /* Slightly brighter card */
+      rgba(255, 255, 255, 0.02)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1.75rem; 
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 0 0 70px rgba(197, 174, 255, 0.08); /* Added subtle color glow */
+    
+    position: relative; /* For potential internal absolute elements */
+    z-index: 2;
+    will-change: transform, opacity; /* Optimize for GSAP */
+  }
+  
+  .ctaHeadline {
+    font-size: clamp(2rem, 5vw, 3rem); /* Impactful headline */
+    font-weight: 700;
+    line-height: 1.2;
+    color: #f5f5f5;
+    margin-bottom: 1rem;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.2);
+  }
+  
+  .ctaText {
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    max-width: 550px; /* Limit text width */
+    margin: 0 auto 2.5rem auto; /* Center text and add space below */
+  }
+  
+  .buttonGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* Gap between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+  }
+  
+  /* Base button styles */
+  .ctaButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.75rem; /* Generous padding */
+    font-size: clamp(0.9rem, 1.6vw, 1rem);
+    font-weight: 500;
+    border-radius: 0.75rem; /* Match block rounding */
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s ease-out;
+    white-space: nowrap; /* Prevent wrapping */
+  }
+  
+  /* Primary Button Styling */
+  .primaryButton {
+    background: linear-gradient(95deg, #a78bfa, #8b5cf6); /* Vibrant purple gradient */
+    color: #ffffff;
+    border-color: #a78bfa; /* Match gradient start */
+    box-shadow: 0 4px 15px rgba(167, 139, 250, 0.2); /* Subtle matching shadow */
+    will-change: transform, box-shadow; /* Optimize for GSAP */
+  }
+  
+  .primaryButton:hover {
+    background: linear-gradient(95deg, #b39ddb, #a78bfa); /* Slightly lighter hover */
+    box-shadow: 0 6px 20px rgba(167, 139, 250, 0.3);
+    transform: translateY(-2px); /* Lift on hover */
+  }
+  .primaryButton svg {
+      transition: transform 0.25s ease-out;
+  }
+  .primaryButton:hover svg {
+      transform: translateX(3px); /* Move arrow slightly on hover */
+  }
+  
+  /* Secondary Button Styling */
+  .secondaryButton {
+    background-color: rgba(255, 255, 255, 0.05); /* Subtle background */
+    color: rgba(255, 255, 255, 0.85);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  .secondaryButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+     color: #ffffff;
+    transform: translateY(-2px);
+  }
+  
+  /* --- Responsive Adjustments --- */
+  @media (max-width: 768px) {
+      .ctaSection { padding: 6rem 1rem; }
+      .ctaBlock { padding: 3rem 1.5rem; }
+      .ctaHeadline { margin-bottom: 0.75rem; }
+      .ctaText { margin-bottom: 2rem; }
+  }
+  
+  @media (max-width: 480px) {
+     .ctaSection { padding: 5rem 1rem; }
+     .ctaBlock { padding: 2.5rem 1.25rem; border-radius: 1.25rem; }
+     .ctaHeadline { font-size: 1.8rem; }
+     .ctaText { font-size: 0.95rem; }
+     .buttonGroup { flex-direction: column; align-items: stretch; gap: 0.75rem; } /* Stack buttons */
+     .ctaButton { width: 100%; padding: 0.9rem 1rem; } /* Full width buttons */
+  }
+  
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+     /* Set final state directly */
+      .ctaBlock, .ctaHeadline, .ctaText, .buttonGroup { opacity: 1; transform: none; }
+      .primaryButton { animation: none !important; box-shadow: none !important; } /* Disable pulse */
+      .primaryButton:hover, .secondaryButton:hover { transform: none; } /* Disable hover lift */
+  }

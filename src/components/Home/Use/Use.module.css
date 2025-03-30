@@ -1,0 +1,156 @@
+/* WhoIsItForSection.module.css */
+
+.whoSection {
+    position: relative;
+    width: 100%;
+    padding: 7rem 1rem; 
+    color: #fff;
+    overflow: hidden;
+
+  }
+  
+  /* Optional Glow container styles */
+  /* .glowContainer { ... } */
+  
+  .whoContainer {
+    width: 100%;
+    max-width: 1200px; /* Adjusted width */
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .sectionTitleWho {
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem); 
+    font-weight: 800; 
+    line-height: 1.15;
+    text-align: center;
+    margin-bottom: 4.5rem; /* More space */
+    color: #f0f0f0;
+    letter-spacing: -0.03em;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  
+  .splitGrid {
+    position: relative; /* Context for absolute divider */
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 5rem; /* Wider gap between columns */
+    align-items: start; /* Align content to the top */
+  }
+  
+  /* Optional Divider Styling */
+  .divider {
+      position: absolute;
+      left: 50%;
+      top: 1rem; /* Start below column headings */
+      bottom: 1rem; /* End above potential footers */
+      width: 1px;
+      background: linear-gradient(180deg, 
+          transparent 0%, 
+          rgba(167, 139, 250, 0.3) 20%, /* Faint violet */
+          rgba(167, 139, 250, 0.3) 80%, 
+          transparent 100%
+      );
+      transform: translateX(-50%) scaleY(0); /* Initially scaled down */
+      transform-origin: center top; /* Scale from top */
+      opacity: 0;
+      will-change: transform, opacity;
+  }
+  
+  
+  .personasColumn,
+  .useCasesColumn {
+      /* Add padding if needed, or rely on list item spacing */
+      /* padding: 1rem; */
+      will-change: transform, opacity; /* Optimize for GSAP */
+  }
+  
+  .columnHeading {
+      font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2.5rem; /* Space below heading */
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: inline-block; /* Allow border bottom to fit text */
+  }
+  
+  
+  .itemList {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem; /* Gap between items */
+  }
+  
+  .personaItem,
+  .useCaseItem {
+      display: flex;
+      align-items: flex-start; /* Align icon top */
+      gap: 1.25rem; /* Gap between icon and text */
+      padding: 0.75rem; /* Padding for hover background effect */
+      border-radius: 0.5rem;
+      transition: background-color 0.25s ease-out;
+      will-change: transform, background-color; /* Optimize */
+  }
+  
+  .itemIcon {
+      flex-shrink: 0;
+      margin-top: 0.1em; /* Fine-tune vertical alignment */
+      color: #a78bfa; /* Base icon color - Violet */
+      transition: transform 0.25s ease-out, color 0.25s ease-out;
+      will-change: transform, color;
+  }
+  
+  .itemName {
+      display: block;
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 0.25rem;
+  }
+  
+  .itemDesc {
+      font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+  }
+  
+  
+  /* --- Responsive Adjustments --- */
+  @media (max-width: 768px) {
+    .whoSection { padding: 5rem 1rem; }
+    .sectionTitleWho { margin-bottom: 3.5rem; }
+    .splitGrid {
+       grid-template-columns: 1fr; /* Stack columns */
+       gap: 4rem; /* Vertical gap when stacked */
+    }
+    .divider {
+       display: none; /* Hide divider on mobile */
+    }
+    .columnHeading {
+       margin-bottom: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+     .whoSection { padding: 4rem 0.75rem; }
+     .whoContainer { padding: 0 0.75rem; }
+     .itemList { gap: 1.75rem; }
+     .personaItem, .useCaseItem { gap: 1rem; padding: 0.5rem; }
+     .itemName { font-size: 1rem; }
+     .itemDesc { font-size: 0.85rem; }
+  }
+  
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+     /* Set final state directly */
+      .personasColumn, .useCasesColumn, .personaItem, .useCaseItem { 
+         opacity: 1; transform: none; 
+      }
+      .divider { display: none; } /* Hide divider if animations disabled */
+  }

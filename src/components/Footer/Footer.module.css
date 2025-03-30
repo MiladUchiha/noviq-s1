@@ -1,0 +1,131 @@
+/* Footer.module.css */
+
+.footer {
+  position: relative; /* Crucial: Establishes a stacking context */
+  z-index: 10; /* Ensures footer is above elements with lower or no z-index (like body::before/::after with z-index: -1) */
+  
+  /* Keep existing styles */
+
+  color: rgba(255, 255, 255, 0.7); 
+  padding: 4rem 1rem 2rem; 
+  margin-top: 5rem; 
+  border-top: 1px solid rgba(255, 255, 255, 0.08); 
+  font-size: 0.9rem;
+}
+  .footerContainer {
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .linkColumns {
+    display: grid;
+     /* Adjust columns based on content - maybe 2 to 4 */
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+    gap: 2.5rem 2rem; /* Row gap, Column gap */
+    margin-bottom: 3rem; /* Space before bottom section */
+  }
+  
+  .listHeading {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9); /* Brighter heading */
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase; /* Optional: Uppercase headings */
+  }
+  
+  .linkList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem; /* Space between links */
+  }
+  
+  .footerLink {
+    color: rgba(255, 255, 255, 0.65); /* Muted link color */
+    text-decoration: none;
+    transition: color 0.2s ease-out;
+  }
+  
+  .footerLink:hover,
+  .footerLink:focus { /* Add focus style */
+    color: #ffffff; /* Brighten on hover/focus */
+    text-decoration: underline; /* Optional: underline on hover */
+    outline: none; /* Remove default focus outline if providing custom style */
+  }
+  
+  /* --- Footer Bottom --- */
+  .footerBottom {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem; /* Gap between items */
+    padding-top: 2rem; /* Space above */
+    border-top: 1px solid rgba(255, 255, 255, 0.08); /* Separator line */
+  }
+  
+  .socialLinks {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem; /* Space between social icons */
+  }
+  
+  .socialIconLink {
+    color: rgba(255, 255, 255, 0.5); /* Muted icon color */
+    transition: color 0.2s ease-out, transform 0.2s ease-out;
+    display: inline-block; /* Allows transform */
+  }
+  
+  .socialIconLink:hover,
+  .socialIconLink:focus {
+    color: #ffffff; /* Brighten icon */
+    transform: scale(1.1); /* Slightly enlarge icon */
+     outline: none; 
+  }
+  
+  .copyrightText {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5); /* Muted copyright */
+    text-align: right; /* Default align right */
+  }
+  
+  /* --- Responsive Adjustments --- */
+  @media (max-width: 768px) {
+    .footer { padding: 3rem 1rem 1.5rem; }
+    .linkColumns { 
+        /* Adjust columns for tablet - maybe 2 columns */
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+        gap: 2rem; 
+        margin-bottom: 2.5rem;
+    }
+    .footerBottom {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align stacked items */
+        gap: 1.5rem; /* Adjust gap */
+        padding-top: 1.5rem;
+    }
+    .copyrightText {
+        text-align: center; /* Center copyright text */
+        order: 2; /* Move copyright below social links */
+    }
+     .socialLinks {
+        order: 1; /* Move social links above copyright */
+    }
+  }
+  
+  @media (max-width: 480px) {
+      .footer { font-size: 0.85rem; }
+      .linkColumns {
+          /* Maybe stack fully or keep 2 columns */
+         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+         gap: 1.5rem;
+      }
+      .listHeading { font-size: 0.9rem; margin-bottom: 0.75rem;}
+      .linkList { gap: 0.5rem; }
+      .copyrightText { font-size: 0.75rem; }
+  }

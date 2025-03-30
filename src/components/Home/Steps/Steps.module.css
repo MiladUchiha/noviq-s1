@@ -1,0 +1,212 @@
+/* HowItWorksDetailed.module.css */
+
+.howItWorksSection {
+  position: relative;
+  width: 100%;
+  padding: 7rem 1rem 8rem; /* More padding */
+  color: #fff;
+  overflow: hidden;
+   
+}
+
+.howItWorksContainer {
+  width: 100%;
+  max-width: 1300px; /* Slightly wider */
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionTitle {
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem); /* Larger title */
+  font-weight: 800; /* Bolder */
+  line-height: 1.15;
+  text-align: center;
+  margin-bottom: 5rem; /* More space below title */
+  color: #f0f0f0;
+  letter-spacing: -0.03em;
+   /* Optional: Add subtle text shadow or gradient */
+   text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.stepsGrid {
+  display: grid;
+   /* 2x2 grid on desktop */
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 3rem 4rem; /* Row gap, Column gap */
+  position: relative; /* Context for absolute lines */
+}
+
+.stepCard {
+  background: linear-gradient(155deg,
+    rgba(255, 255, 255, 0.05), /* Brighter start */
+    rgba(255, 255, 255, 0.015) /* Subtle end */
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Base border */
+  border-radius: 1.75rem; /* Slightly larger radius */
+  padding: 2.5rem; 
+  backdrop-filter: blur(12px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.2), 0 0 60px rgba(255,255,255,0.06); /* Base shadow */
+  position: relative; 
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+  will-change: transform, border-color, box-shadow;
+}
+
+.stepCardContent {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure content takes full card height */
+}
+
+
+.stepHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.stepNumber {
+  font-size: clamp(3rem, 6vw, 4rem);
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.07); /* Even more subtle */
+  line-height: 1;
+  margin-right: 1rem;
+}
+
+.stepIconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem; /* Larger padding */
+  border-radius: 1rem; /* Rounded square */
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #c5aeff; /* Adjusted purple */
+  flex-shrink: 0; 
+  transition: transform 0.3s ease;
+}
+
+.stepTitle {
+  font-size: clamp(1.3rem, 2.2vw, 1.65rem); /* Slightly larger */
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.98); /* Almost white */
+}
+
+.stepDescription {
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem); /* Slightly larger */
+  color: rgba(255, 255, 255, 0.8); /* Brighter description */
+  line-height: 1.7;
+  flex-grow: 1; /* Push footer down */
+  margin-bottom: 1.5rem; /* Space before sub-icons */
+}
+
+.subIconContainer {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto; /* Push to bottom */
+  padding-top: 1rem; /* Space above sub-icons */
+  border-top: 1px solid rgba(255,255,255, 0.06); /* Subtle separator */
+  color: rgba(255,255,255, 0.6); /* Dimmer sub-icons */
+}
+
+
+/* Connecting Lines - Positioned absolutely */
+.connectingLine {
+  position: absolute;
+  height: 2px; /* Line thickness */
+  background: linear-gradient(90deg, rgba(197, 174, 255, 0.1), rgba(197, 174, 255, 0.6), rgba(197, 174, 255, 0.1)); /* Gradient line */
+  opacity: 0; /* Controlled by GSAP autoAlpha */
+  visibility: hidden; /* Controlled by GSAP autoAlpha */
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* Line from Step 1 to Step 2 (Rightwards) */
+.connectingLine1 {
+  width: 4rem; /* Column gap */
+  top: 50%; 
+  left: 100%; /* Start at the right edge of the card */
+  transform: translateY(-50%) scaleX(0); /* Center vertically, scale horizontally */
+  transform-origin: left center;
+}
+
+/* Line from Step 2 to Step 3 (Downwards) */
+.connectingLine2 {
+   height: 3rem; /* Row gap */
+   width: 2px; /* Vertical line thickness */
+   left: 50%;
+   top: 100%; /* Start at the bottom edge of the card */
+   transform: translateX(-50%) scaleY(0); /* Center horizontally, scale vertically */
+   transform-origin: center top;
+    background: linear-gradient(180deg, rgba(197, 174, 255, 0.1), rgba(197, 174, 255, 0.6), rgba(197, 174, 255, 0.1)); /* Vertical gradient */
+}
+
+/* Line from Step 3 to Step 4 (Rightwards - adjust if needed for layout) */
+.connectingLine3 {
+  width: 4rem; 
+  top: 50%; 
+  left: 100%;
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left center;
+}
+
+
+/* --- Responsive Adjustments --- */
+
+@media (max-width: 1024px) {
+    .stepsGrid {
+        gap: 2.5rem 3rem;
+    }
+    .connectingLine1, .connectingLine3 { width: 3rem; }
+    .connectingLine2 { height: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+  .howItWorksSection { padding: 5rem 1rem 6rem; }
+  .sectionTitle { margin-bottom: 4rem; }
+  .stepsGrid {
+     /* Stack to 1 column */
+    grid-template-columns: 1fr; 
+    gap: 4rem; /* Increase vertical gap when stacked */
+  }
+  .stepCard { padding: 2rem; }
+  
+  /* Adjust/Hide lines for stacked layout */
+  .connectingLine {
+     /* Style as vertical lines between stacked cards */
+     width: 2px;
+     height: 4rem; /* The increased stack gap */
+     left: 50%;
+     top: 100%; /* Position below the card */
+     transform: translateX(-50%) scaleY(0); /* Scale vertically */
+     transform-origin: center top;
+      background: linear-gradient(180deg, rgba(197, 174, 255, 0.1), rgba(197, 174, 255, 0.6), rgba(197, 174, 255, 0.1));
+  }
+  /* Hide the last line when stacked */
+   .connectingLine3 {
+      display: none; 
+   }
+}
+
+@media (max-width: 480px) {
+   .howItWorksSection { padding: 4rem 0.75rem 5rem; }
+   .howItWorksContainer { padding: 0 0.75rem; }
+   .stepCard { padding: 1.75rem; border-radius: 1.25rem; }
+   .stepNumber { font-size: 2.8rem; }
+   .stepIconContainer { padding: 1rem; }
+   .subIconContainer { gap: 0.75rem; }
+}
+
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    /* Rely mainly on JS check, but can force styles */
+   .stepCard:nth-child(2) .stepIconContainer svg { animation: none; }
+   .connectingLine { transition: none; }
+}

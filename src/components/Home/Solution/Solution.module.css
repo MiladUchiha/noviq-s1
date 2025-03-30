@@ -1,0 +1,312 @@
+/* ProblemSolutionSection.module.css */
+
+.psSection {
+  position: relative;
+  width: 100%;
+  padding: 6rem 1rem 8rem; /* Extra bottom padding */
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Optional: Background lines styling if reused */
+/*
+.psBackgroundLines {
+  position: absolute;
+  opacity: 0.2; 
+  z-index: -1; 
+  inset: 0;
+  background-image: ... // same as FeatureSection or Hero
+}
+*/
+
+.psContainer {
+  width: 100%;
+  max-width: 1200px; /* Consistent max-width */
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #eee;
+  letter-spacing: -0.02em;
+}
+
+.psGrid {
+  display: grid;
+  /* Grid with explicit track for the transition element */
+  grid-template-columns: 1fr auto 1fr; 
+  gap: 2rem; /* Gap between columns */
+  align-items: start; /* Align columns to the top */
+}
+
+.psColumn {
+  background: linear-gradient(170deg,
+    rgba(255, 255, 255, 0.035), /* Slightly different angle/opacity */
+    rgba(255, 255, 255, 0.015)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 0 60px rgba(255,255,255,0.05);
+  height: 100%; /* Make columns equal height implicitly via grid */
+}
+
+.columnTitle {
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: center;
+}
+
+.problemList,
+.solutionList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Spacing between list items */
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.listIcon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Specific icon colors */
+.problemColumn .listIcon {
+  color: #ff8a80; /* Reddish accent for problems */
+}
+
+.solutionColumn .listIcon {
+  color: #80d8ff; /* Bluish accent for solutions */
+}
+
+/* Transition Element Styling */
+.transitionWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Take full grid row height */
+  padding: 4rem 0; /* Add some vertical padding */
+}
+
+.transitionLine {
+  width: 4px; /* Line thickness */
+  height: 80px; /* Line height */
+  background: linear-gradient(180deg, 
+    rgba(138, 43, 226, 0.2), /* Top color (match hero?) */
+    rgba(138, 43, 226, 0.8), /* Middle color */
+    rgba(138, 43, 226, 0.2) /* Bottom color */
+  );
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.5), 0 0 20px rgba(138, 43, 226, 0.3);
+  transform-origin: center center; /* Scale from the center vertically */
+  opacity: 0; /* Initially hidden */
+}
+
+
+.solutionBenefit {
+  margin-top: 2.5rem;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  line-height: 1.7;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* --- Responsive Adjustments --- */
+
+@media (max-width: 1024px) {
+  .psGrid {
+    gap: 1.5rem;
+  }
+  .psColumn {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .psSection {
+    padding: 4rem 1rem 5rem;
+  }
+  .sectionTitle {
+     margin-bottom: 3rem;
+  }
+  .psGrid {
+    /* Stack columns */
+    grid-template-columns: 1fr; 
+    gap: 2.5rem; /* Increase gap when stacked */
+  }
+   .psColumn {
+     padding: 1.75rem;
+   }
+  .transitionWrapper {
+    /* Rotate line and place between stacked columns */
+    padding: 0;
+    height: auto; 
+    order: 1; /* Place between problem (0) and solution (2 implicitly) */
+  }
+  .transitionLine {
+    width: 100px; /* Horizontal line */
+    height: 4px;
+    margin: 0 auto; /* Center horizontally */
+     background: linear-gradient(90deg, /* Adjust gradient direction */
+      rgba(138, 43, 226, 0.2), 
+      rgba(138, 43, 226, 0.8), 
+      rgba(138, 43, 226, 0.2) 
+    );
+     transform-origin: center center; /* Scale from center horizontally */
+  }
+
+  /* Ensure problem column comes first when stacked */
+  .problemColumn { order: 0; }
+  .solutionColumn { order: 2; }
+
+   .solutionBenefit {
+     margin-top: 2rem;
+   }
+}
+
+@media (max-width: 480px) {
+   .psSection {
+    padding: 3rem 0.5rem 4rem;
+  }
+   .psContainer {
+     padding: 0 0.5rem;
+   }
+   .psColumn {
+     padding: 1.5rem;
+     border-radius: 1rem;
+   }
+   .columnTitle {
+     margin-bottom: 1.5rem;
+   }
+   .listItem {
+     gap: 0.75rem;
+   }
+   .listIcon {
+     width: 32px;
+     height: 32px;
+   }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  /* Consider simplifying or removing animations */
+  .psColumn, .listItem, .transitionLine {
+    /* You might set initial styles directly if disabling JS animations */
+    /* opacity: 1; transform: none; */
+  }
+}
+/* Add these styles to ProblemSolutionSection.module.css */
+
+/* Subtle Glow Container & Elements */
+.glowContainer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden; /* Keep glows contained */
+    z-index: 0; /* Behind the main container */
+    pointer-events: none; /* Allow clicks through */
+  }
+  
+  .subtleGlow {
+    position: absolute;
+    border-radius: 50%;
+    width: 40vw; /* Adjust size as needed */
+    height: 40vw;
+    max-width: 500px;
+    max-height: 500px;
+    filter: blur(100px); /* Significant blur */
+    opacity: 0; /* Start hidden, GSAP controls fade */
+    will-change: transform, opacity; /* Optimize for animation */
+  }
+  
+  /* Position and color the glows */
+  .subtleGlow1 {
+    top: 10%;
+    left: 15%;
+    background: radial-gradient(circle, rgba(255, 138, 128, 0.2) 0%, transparent 70%); /* Soft red */
+  }
+  
+  .subtleGlow2 {
+    top: 50%;
+    right: 10%;
+     background: radial-gradient(circle, rgba(128, 216, 255, 0.2) 0%, transparent 70%); /* Soft blue */
+  }
+  
+  .subtleGlow3 {
+    bottom: 10%;
+    left: 40%;
+    width: 30vw; /* Slightly smaller */
+    height: 30vw;
+    background: radial-gradient(circle, rgba(179, 157, 219, 0.15) 0%, transparent 70%); /* Soft purple */
+  }
+  
+  
+  /* Ensure main content is above glows */
+  .psContainer {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Refine column border transition for hover */
+  .psColumn {
+    /* ... existing styles ... */
+    transition: border-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Custom ease for border */
+    will-change: transform, border-color; /* Optimize */
+  }
+  
+  /* Optimize list items for transform */
+  .listItem {
+     /* ... existing styles ... */
+     will-change: transform;
+  }
+  
+  .listIcon {
+     /* ... existing styles ... */
+     will-change: transform;
+  }
+  
+  
+  /* Update Reduced Motion section */
+  @media (prefers-reduced-motion: reduce) {
+    /* Disable JS animations directly or rely on the isReducedMotion check in JS */
+    /* You might still want static states: */
+    .psColumn, .listItem, .transitionLine, .subtleGlow {
+      transition: none;
+      /* animation: none; // If using CSS animations */
+    }
+    .subtleGlow {
+      opacity: 0.05; /* Static subtle presence */
+    }
+  }
