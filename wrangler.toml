@@ -1,0 +1,26 @@
+name = "noviq-s1"
+main = "src/worker/index.js"
+compatibility_date = "2025-03-30"
+
+[build]
+command = "npm run build"
+
+[vars]
+# Define your default environment variables here
+# These will be overridden by vars set in the Cloudflare dashboard
+ENVIRONMENT = "production"
+
+# If you're using Next.js Pages, configure the site asset handling
+[site]
+bucket = ".next/static"
+
+# Configure routes for your application
+[routes]
+pattern = "/api/env"
+script = "src/worker/index.js"
+
+# Override variables in different environments if needed
+[env.production]
+routes = [
+  { pattern = "/*", script = "src/worker/index.js" }
+] 
