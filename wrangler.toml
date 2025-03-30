@@ -1,0 +1,21 @@
+name = "noviq-s1"
+compatibility_date = "2025-03-30"
+main = "src/worker/index.js"
+
+# Build command (if needed)
+# [build]
+# command = "npm run build"
+
+# Environment variables configuration
+[vars]
+# Public variables
+NEXT_PUBLIC_SUPABASE_URL = "https://lmnwmwdlokbeneizylnf.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxtbndtd2Rsb2tiZW5laXp5bG5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE3Mjc2MjksImV4cCI6MjA1NzMwMzYyOX0.cav75YDT1L1-hk8HNtOMmi9w58yNR5m-11Rl_LG_gVE"
+NEXTAUTH_URL = "https://noviq.ahmadpourmilad8.workers.dev"
+NEXTAUTH_SECRET = "BP7WiVx/fGdFsjCbtAokPbaw0b6A9XKr7Y1SkjzwfxA="
+GOOGLE_CLIENT_ID = "360111335024-v9e8oqbujslkbsfmdosvfqljq8d6gmf9.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET = "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"
+
+# For static assets (if needed)
+# [site]
+# bucket = ".next/static" 
