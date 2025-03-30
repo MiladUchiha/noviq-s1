@@ -6,9 +6,6 @@ main = "src/worker/index.js"
 # [build]
 # command = "npm run build"
 
-# Environment variables configuration
-[vars]
-# Public variables
 
 
 # For static assets (if needed)
