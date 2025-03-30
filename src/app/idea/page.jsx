@@ -8,10 +8,11 @@ import { Sparkles } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import styles from '../../components/Home/Hero/Hero.module.css';
 
-const IdeaPage = () => {
+// Content component that uses searchParams
+const IdeaPageContent = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -216,6 +217,24 @@ const IdeaPage = () => {
         </div>
       </section>
     </div>
+  );
+};
+
+// Main component wrapped in Suspense boundary
+const IdeaPage = () => {
+  return (
+    <Suspense fallback={
+      <div className={styles.container}>
+        <div className={styles.heroContent}>
+          <div style={{ textAlign: 'center', padding: '2rem' }}>
+            <h2>Loading...</h2>
+            <p>Please wait while we retrieve your idea</p>
+          </div>
+        </div>
+      </div>
+    }>
+      <IdeaPageContent />
+    </Suspense>
   );
 };
 

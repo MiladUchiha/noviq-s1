@@ -3,10 +3,11 @@
 import { updateUserIdea } from '@/lib/auth';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import styles from '../../components/Home/Hero/Hero.module.css';
 
-export default function OAuthCallback() {
+// Wrapper component that uses searchParams
+const OAuthCallbackContent = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -139,5 +140,21 @@ export default function OAuthCallback() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Main component wrapped in Suspense boundary
+export default function OAuthCallback() {
+  return (
+    <Suspense fallback={<div className={styles.container}>
+      <div className={styles.heroContent}>
+        <div style={{ textAlign: 'center', padding: '2rem' }}>
+          <h2>Loading...</h2>
+          <p>Please wait while we set up your account</p>
+        </div>
+      </div>
+    </div>}>
+      <OAuthCallbackContent />
+    </Suspense>
   );
 } 

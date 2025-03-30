@@ -7,7 +7,7 @@ import { Lock, LogIn, Mail, User } from 'lucide-react'; // Icons for fields and 
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import styles from '../../../components/Home/Hero/Hero.module.css'; // Reuse the same CSS module
 
 // --- Placeholder for Google Icon ---
@@ -25,7 +25,8 @@ const GoogleIcon = () => (
 
 const LOGIN_ROUTE = '/login' // Updated login route
 
-const RegisterPage = () => {
+// Create a wrapper component to use searchParams
+const RegisterPageContent = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     
@@ -386,6 +387,15 @@ const RegisterPage = () => {
                 </div>
             </section>
         </div>
+    )
+}
+
+// Main component wrapped in Suspense boundary
+const RegisterPage = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <RegisterPageContent />
+        </Suspense>
     )
 }
 
